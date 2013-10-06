@@ -1,0 +1,17 @@
+[
+    {
+        "id": "${project.parent.artifactId}.app",
+        "description": "Monitors the running OpenMRS installation and provides useful information about its state",
+        "extensions": [
+            {
+                "id": "${project.parent.artifactId}.appId",
+                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+                "type": "link",
+                "label": "monitoringapp.monitoring",
+                "url": "monitoringapp/monitoring.page",
+                "icon": "icon-bar-chart",
+                "requiredPrivilege": "App: some random privilege"
+            }
+        ]
+    }
+]
