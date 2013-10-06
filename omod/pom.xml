@@ -13,11 +13,6 @@
 	<name>Monitoring App Module OMOD</name>
 	<description>OMOD project for MonitoringApp</description>
 
-	<properties>
-		<appframeworkVersion>2.0</appframeworkVersion>
-		<uiframeworkVersion>3.0</uiframeworkVersion>
-	</properties>
-
 	<dependencies>
 
 		<!-- Add other dependencies from parent's pom: <dependency> <groupId>org.other.library</groupId> 
@@ -31,20 +26,12 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>appframework-api</artifactId>
-			<version>${appframeworkVersion}</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>uiframework-api</artifactId>
-			<version>${uiframeworkVersion}</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>appui-omod</artifactId>
+            <version>${appuiVersion}</version>
+            <scope>provided</scope>
+        </dependency>
 
 		<!-- End OpenMRS modules -->
 
