@@ -1,6 +1,5 @@
 package org.openmrs.module.monitoringapp.api;
 
-import java.util.Map;
 
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.monitoringapp.AggregationData;
