@@ -40,8 +40,8 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 		switch (period){
 		
 			case YEAR: return aggregateYear(aggData);
-			case MONTH: break;
-			case DAY: break;
+			case MONTH: return aggregateMonth(aggData);
+			case DAY: return aggregateDay(aggData);
 			default: break;
 		
 		}
