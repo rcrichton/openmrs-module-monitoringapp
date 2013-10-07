@@ -83,11 +83,65 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 	}
 	
 	AggregationData aggregateMonth(AggregationData aggData){
-		return null;
+		Dataset set = new Dataset();
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date today = new Date();
+        Calendar cal = Calendar.getInstance(); 
+        cal.setTime(today); 
+        cal.add(Calendar.DATE, -30);
+        Date fromDate = cal.getTime();
+
+        
+		for (int i=1; i<=30; i++){
+			
+	        aggData.labels.add(new SimpleDateFormat("MMMM dd").format(fromDate));
+			cal.add(Calendar.DATE, 1);
+			Date toDate = cal.getTime();
+			
+			String sql = PATIENTCREATEDSQL.replaceAll("FROMDATE", dateFormat.format(fromDate));
+			sql = sql.replace("TODATE", dateFormat.format(toDate));
+			
+			List<List<Object>> countObject = Context.getAdministrationService().executeSQL(sql, true);
+			Integer count = (Integer) countObject.get(0).get(0);
+			set.data.add(count);
+			fromDate = toDate;
+		}
+		
+		aggData.dataSets.add(set);
+		return aggData;
 	}
 	
 	AggregationData aggregateDay(AggregationData aggData){
-		return null;
+		Dataset set = new Dataset();
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date today = new Date();
+        Calendar cal = Calendar.getInstance(); 
+        cal.setTime(today); 
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND,0);
+        Date fromDate = cal.getTime();
+        
+		for (int i=1; i<=24; i++){
+			
+	        aggData.labels.add(new SimpleDateFormat("HH:mm").format(fromDate));
+			cal.add(Calendar.HOUR, 1);
+			Date toDate = cal.getTime();
+			
+			String sql = PATIENTCREATEDSQL.replaceAll("FROMDATE", dateFormat.format(fromDate));
+			sql = sql.replace("TODATE", dateFormat.format(toDate));
+			
+			List<List<Object>> countObject = Context.getAdministrationService().executeSQL(sql, true);
+			Integer count = (Integer) countObject.get(0).get(0);
+			set.data.add(count);
+			fromDate = toDate;
+		}
+		
+		aggData.dataSets.add(set);
+		return aggData;
 	}
+	
 	
 }
