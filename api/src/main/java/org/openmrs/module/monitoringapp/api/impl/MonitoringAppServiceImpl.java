@@ -65,7 +65,7 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
         
 		for (int i=1; i<=12; i++){
 			
-	        aggData.labels.add(new DateFormatSymbols().getMonths()[cal.get(Calendar.MONTH)-1]);
+	        aggData.labels.add(new SimpleDateFormat("MMMM").format(fromDate));
 			cal.add(Calendar.MONTH, 1);
 			Date toDate = cal.getTime();
 			
@@ -73,8 +73,8 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 			sql = sql.replace("TODATE", dateFormat.format(toDate));
 			
 			List<List<Object>> countObject = Context.getAdministrationService().executeSQL(sql, true);
-			Integer count = (Integer) countObject.get(0).get(0);
-			set.data.add(count);
+			Long count = (Long) countObject.get(0).get(0);
+			set.data.add(count.intValue());
 			fromDate = toDate;
 		}
 		
@@ -103,8 +103,8 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 			sql = sql.replace("TODATE", dateFormat.format(toDate));
 			
 			List<List<Object>> countObject = Context.getAdministrationService().executeSQL(sql, true);
-			Integer count = (Integer) countObject.get(0).get(0);
-			set.data.add(count);
+			Long count = (Long) countObject.get(0).get(0);
+			set.data.add(count.intValue());
 			fromDate = toDate;
 		}
 		
@@ -134,8 +134,8 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 			sql = sql.replace("TODATE", dateFormat.format(toDate));
 			
 			List<List<Object>> countObject = Context.getAdministrationService().executeSQL(sql, true);
-			Integer count = (Integer) countObject.get(0).get(0);
-			set.data.add(count);
+			Long count = (Long) countObject.get(0).get(0);
+			set.data.add(count.intValue());
 			fromDate = toDate;
 		}
 		
