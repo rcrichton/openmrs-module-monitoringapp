@@ -95,7 +95,7 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
         
 		for (int i=1; i<=30; i++){
 			
-	        aggData.labels.add(new SimpleDateFormat("MMMM dd").format(fromDate));
+	        aggData.labels.add(new SimpleDateFormat("dd MMM").format(fromDate));
 			cal.add(Calendar.DATE, 1);
 			Date toDate = cal.getTime();
 			
