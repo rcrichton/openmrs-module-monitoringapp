@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface MonitoringAppService extends OpenmrsService {
 
 	public enum AggregationPeriod {
-	    ALLTIME, YEAR, MONTH, WEEK, DAY;
+	   YEAR, MONTH, DAY;
 	}
 
 	public AggregationData getPatientRegistrationAggregation(AggregationPeriod period);
