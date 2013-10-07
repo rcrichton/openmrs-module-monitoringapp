@@ -5,7 +5,7 @@
 
 <h2>${ ui.message("monitoringapp.monitoring.page.title") }!</h2>
 
-<canvas id="canvas" height="450" width="600"></canvas>
+<canvas style="align: center" id="canvas" height="450" width="600"></canvas>
 
 	<script>
 
@@ -40,7 +40,12 @@
     ajaxRequest(getID('canvas'), 'http://localhost:8080/openmrs/ws/rest/v1/monitoringapp/patientscreated?period=y');
 	
 	</script>
+	
+<br/>
 
-<input type="button" id="Refresh" onclick="ajaxRequest(getID('canvas'), 'http://localhost:8080/openmrs/ws/rest/v1/monitoringapp/patientscreated?period=y')" value="Refresh">
-
+<div style="align: center">
+	<input type="button" id="Year" onclick="ajaxRequest(getID('canvas'), 'http://localhost:8080/openmrs/ws/rest/v1/monitoringapp/patientscreated?period=y')" value="Year">
+	<input type="button" id="Month" onclick="ajaxRequest(getID('canvas'), 'http://localhost:8080/openmrs/ws/rest/v1/monitoringapp/patientscreated?period=m')" value="Month">
+	<input type="button" id="Day" onclick="ajaxRequest(getID('canvas'), 'http://localhost:8080/openmrs/ws/rest/v1/monitoringapp/patientscreated?period=d')" value="Day">
+</div>
 
