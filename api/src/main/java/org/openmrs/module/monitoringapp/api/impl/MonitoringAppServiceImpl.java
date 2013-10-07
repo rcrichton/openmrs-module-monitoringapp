@@ -78,7 +78,7 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 			fromDate = toDate;
 		}
 		
-		aggData.dataSets.add(set);
+		aggData.datasets.add(set);
 		return aggData;
 	}
 	
@@ -108,7 +108,7 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 			fromDate = toDate;
 		}
 		
-		aggData.dataSets.add(set);
+		aggData.datasets.add(set);
 		return aggData;
 	}
 	
@@ -139,7 +139,7 @@ public class MonitoringAppServiceImpl implements MonitoringAppService {
 			fromDate = toDate;
 		}
 		
-		aggData.dataSets.add(set);
+		aggData.datasets.add(set);
 		return aggData;
 	}
 	
