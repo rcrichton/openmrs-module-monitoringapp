@@ -3,6 +3,10 @@ package org.openmrs.module.monitoringapp.web.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openmrs.api.context.Context;
+import org.openmrs.module.monitoringapp.AggregationData;
+import org.openmrs.module.monitoringapp.api.MonitoringAppService;
+import org.openmrs.module.monitoringapp.api.MonitoringAppService.AggregationPeriod;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
@@ -24,12 +28,18 @@ public class MonitoringAppResourceController extends BaseRestController {
 			HttpServletResponse response) throws ResponseException {
 		
 		response.addHeader("content-type", "application/json");
+		AggregationData aggData = new AggregationData();
 		
-		//Context.getService(this.getClass());
+		if (period.equals("y"))
+			aggData = Context.getService(MonitoringAppService.class).getPatientRegistrationAggregation(AggregationPeriod.YEAR);
+		if (period.equals("m"))
+			aggData = Context.getService(MonitoringAppService.class).getPatientRegistrationAggregation(AggregationPeriod.MONTH);
+		if (period.equals("d"))
+			aggData = Context.getService(MonitoringAppService.class).getPatientRegistrationAggregation(AggregationPeriod.DAY);
 		
-		objectToJson(new Object());
+		return objectToJson(aggData);
 	
-		String jsonData = "{" +
+	/*	String jsonData = "{" +
 						"\"labels\" : [\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\"]," +
 						"\"datasets\" : [" +
 							"{" +
@@ -49,7 +59,7 @@ public class MonitoringAppResourceController extends BaseRestController {
 						"]" +
 					"}";
 	
-		return jsonData;
+		return jsonData;*/
 	}
 	
 	@RequestMapping(value = "/encountertypes", method = RequestMethod.GET)
