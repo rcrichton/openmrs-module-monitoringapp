@@ -1,9 +1,12 @@
 <%
  ui.decorateWith("appui", "standardEmrPage")
- ui.includeJavascript("monitoringapp", "Chart.js");
+ ui.includeCss("monitoringapp", "nv.d3.css");
+ ui.includeJavascript("monitoringapp", "d3.v3.js");
+ ui.includeJavascript("monitoringapp", "nv.d3.js");
 %>
 
 <h1>${ ui.message("monitoringapp.monitoring.page.title") }</h1>
+
 
 <h2>Patient Data Metrics</h2>
 
@@ -51,38 +54,28 @@
 	<input type="button" id="Day" onclick="ajaxRequest(getID('canvas'), 'http://localhost:8080/openmrs/ws/rest/v1/monitoringapp/patientscreated?period=d')" value="Day">
 </div>
 
-<h2>Service Metrics</h2>
+<article id="server-metrics">
+<section>
+<h2>Server Metrics</h2>
+
+<svg id="line-chart" style="height:600px"></svg>
 
 
-Current Used PermGen Space (bytes):
-<div id="memory"></div>
+other graph
+<style>
 
-<script>
-    function metricsAjaxRequest(aElement, aUrl) {
-    
-        var httpRequest = new XMLHttpRequest();
-        httpRequest.onreadystatechange = function() {
-            metricsHandleResult(aElement, httpRequest);
-        };
-        try {
-            httpRequest.open('GET', aUrl, true);
-            httpRequest.send(null);
-        } catch(e){
-        }
-    }
-    
-    function metricsHandleResult(aElement, aXMLHttpRequest) {
-        if (!aXMLHttpRequest) return;
+#chart svg {
+  height: 400px;
+}
 
-        if (!aElement) return;
+</style>
 
-        if (aXMLHttpRequest.readyState == 4 && aXMLHttpRequest.status == 200) {
-            var data = JSON.parse(aXMLHttpRequest.responseText);
-            
-            aElement.innerHTML=data.list[11].memoryInformations.usedPermGen
-        }
-    }
-    
-     metricsAjaxRequest(document.getElementById("memory"), 'http://localhost:8080/openmrs/monitoring?format=json&period=tout');
-</script>
+
+<div id="stacked-chart">
+  <svg></svg>
+</div>
+
+<%
+ ui.includeJavascript("monitoringapp", "monitoringapp.js");
+%>
 
